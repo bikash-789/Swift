@@ -69,3 +69,59 @@ woof.age
 woof.age += 1
 woof.name
 woof.age
+
+
+protocol Vehicle{
+    var speed : Int {get set}
+    mutating func increaseSpeed(by value : Int)
+}
+
+extension Vehicle {
+    mutating func increaseSpeed(by value: Int)
+    {
+        self.speed += value
+    }
+}
+
+
+struct Bike : Vehicle {
+    var speed : Int
+    init(){
+        self.speed = 0
+    }
+}
+
+var bike = Bike()
+bike.speed
+bike.increaseSpeed(by: 10)
+bike.speed
+
+
+// Check whether the object conform to given protocol with the help of 'is' keyword
+
+func describe(obj : Any)
+{
+    if obj is Vehicle {
+        "Obj conforms to the Vehicle protocol"
+    }
+    else {
+        "Obj does not conforms to the Vehicle protocol"
+    }
+}
+describe(obj: bike)
+
+
+
+func increaseSpeedIfVehicle (
+    obj : Any
+){
+    if var vehicle = obj as? Vehicle {
+        vehicle.speed
+        vehicle.increaseSpeed(by: 10)
+        vehicle.speed
+    }
+    else {
+        "This was not a vehicle"
+    }
+}
+increaseSpeedIfVehicle(obj: bike)
