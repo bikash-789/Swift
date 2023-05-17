@@ -1,0 +1,4 @@
+*/*.xcworkspace
+*/xcuserdata
+*/*.xcplayground
+*.DS_Store
